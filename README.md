@@ -72,21 +72,6 @@ https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo.spring
 ### MongoDB
 `docker exec -it mytv-mongodb sh` \
 `mongosh -u local -p local`
-
----
-
-## 참고
-- Redis Command : https://redis.io/docs/latest/commands/
-- Spring Data RedisTemplate 지원 Redis Command : https://docs.spring.io/spring-data/redis/reference/appendix.html
-
-## 설치시 문제 해결
-### MacOS Sonoma SSL 문제
-```
-library not loaded: /opt/homebrew/opt/openssl@3/lib/libssl.3.dylib
-```
-- 관련 설명 : https://github.com/codemonstur/embedded-redis?tab=readme-ov-file#ssltls-troubleshooting
-- 해결 방법 : openssl 설치 
-  - https://github.com/rvm/rvm/issues/5380
   - https://formulae.brew.sh/formula/openssl@3
 
 [^1]: 기존에 많이 쓰이던 [ozimov embedded redis](https://github.com/ozimov/embedded-redis)가 추가 버전업이 없어서 최근에 대체 용도로 많이 쓰이는 라이브러리
