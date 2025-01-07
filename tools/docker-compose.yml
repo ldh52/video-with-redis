@@ -6,7 +6,7 @@ services:
       - ./mysql/my.cnf:/etc/mysql/conf.d/mytv.cnf
       - ./mysql/data:/var/lib/mysql
     ports:
-      - '3306:3306'
+      - '3307:3307'
     environment:
       - MYSQL_DATABASE=mytv
       - MYSQL_USER=local
