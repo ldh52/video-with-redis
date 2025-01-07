@@ -72,7 +72,3 @@ https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo.spring
 ### MongoDB
 `docker exec -it mytv-mongodb sh` \
 `mongosh -u local -p local`
-  - https://formulae.brew.sh/formula/openssl@3
-
-[^1]: 기존에 많이 쓰이던 [ozimov embedded redis](https://github.com/ozimov/embedded-redis)가 추가 버전업이 없어서 최근에 대체 용도로 많이 쓰이는 라이브러리
-[^2]: Spring 3.x 부터 [embedded mongo 가 제거](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes#springmongodbembeddedfeatures-configuration-property-removed)되고 3.x 를 위한 라이브러리 변경됨
