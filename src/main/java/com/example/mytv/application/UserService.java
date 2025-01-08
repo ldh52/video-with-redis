@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UserUserCase {
+
     private final LoadUserPort loadUserPort;
 
     public UserService(LoadUserPort loadUserPort) {

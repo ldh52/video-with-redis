@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RedisNewVideoMessageListener implements MessageListener {
+
     private final SubscribeJpaRepository subscribeJpaRepository;
     private final MessagePort messagePort;
     private final ObjectMapper objectMapper;
 
-    public RedisNewVideoMessageListener(SubscribeJpaRepository subscribeJpaRepository, MessagePort messagePort, ObjectMapper objectMapper) {
+    public RedisNewVideoMessageListener(SubscribeJpaRepository subscribeJpaRepository,
+        MessagePort messagePort, ObjectMapper objectMapper) {
         this.subscribeJpaRepository = subscribeJpaRepository;
         this.messagePort = messagePort;
         this.objectMapper = objectMapper;
@@ -24,12 +26,14 @@ public class RedisNewVideoMessageListener implements MessageListener {
     @Override
     public void onMessage(Message message, byte[] pattern) {
         try {
-            NewVideoMessage newVideoMessage = objectMapper.readValue(message.getBody(), NewVideoMessage.class);
+            NewVideoMessage newVideoMessage = objectMapper.readValue(message.getBody(),
+                NewVideoMessage.class);
             var channelId = newVideoMessage.getChannelId();
 
             subscribeJpaRepository.findAllByChannelId(channelId).stream()
                 .map(SubscribeJpaEntity::getUser)
-                .forEach(user -> System.out.println( user.getId() + "," + channelId + " 채널에 새로운 영상이 등록되었습니다."));
+                .forEach(user -> System.out.println(
+                    user.getId() + "," + channelId + " 채널에 새로운 영상이 등록되었습니다."));
         } catch (Exception e) {
             e.printStackTrace();
         }

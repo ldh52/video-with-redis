@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 @SpringBootTest
 public class CommentMongoRepositoryIntTest {
+
     @Autowired
     private CommentMongoRepository sut;
 
@@ -27,12 +28,14 @@ public class CommentMongoRepositoryIntTest {
         var videoId = "videoId";
         for (int i = 0; i < 10; i++) {
             var id = UUID.randomUUID().toString();
-            var comment = Comment.builder().id(id).channelId("channelId").videoId(videoId).text("text " + i).authorId("user")
+            var comment = Comment.builder().id(id).channelId("channelId").videoId(videoId)
+                .text("text " + i).authorId("user")
                 .publishedAt(LocalDateTime.now()).build();
             mongoTemplate.save(CommentDocument.from(comment));
         }
 
-        var result = sut.findAllByVideoIdAndParentIdAndPublishedAtLessThanEqualOrderByPublishedAtDesc(videoId, null, LocalDateTime.now(), Limit.of(5));
+        var result = sut.findAllByVideoIdAndParentIdAndPublishedAtLessThanEqualOrderByPublishedAtDesc(
+            videoId, null, LocalDateTime.now(), Limit.of(5));
 
         then(result)
             .hasSize(5)
@@ -47,26 +50,29 @@ public class CommentMongoRepositoryIntTest {
         var videoId = "videoId";
         // save top level comment
         var topLevelCommentId = UUID.randomUUID().toString();
-        var topLevelComment = Comment.builder().id(topLevelCommentId).channelId("channelId").videoId(videoId).text("text").authorId("user")
-                .publishedAt(LocalDateTime.now()).build();
+        var topLevelComment = Comment.builder().id(topLevelCommentId).channelId("channelId")
+            .videoId(videoId).text("text").authorId("user")
+            .publishedAt(LocalDateTime.now()).build();
         mongoTemplate.save(CommentDocument.from(topLevelComment));
         // save replies
         for (int i = 0; i < 10; i++) {
             var id = UUID.randomUUID().toString();
-            var comment = Comment.builder().id(id).channelId("channelId").videoId(videoId).parentId(topLevelCommentId).text("text " + i).authorId("user")
-                    .publishedAt(LocalDateTime.now()).build();
+            var comment = Comment.builder().id(id).channelId("channelId").videoId(videoId)
+                .parentId(topLevelCommentId).text("text " + i).authorId("user")
+                .publishedAt(LocalDateTime.now()).build();
             mongoTemplate.save(CommentDocument.from(comment));
         }
 
-        var result = sut.findAllByParentIdAndPublishedAtLessThanEqualOrderByPublishedAtDesc(topLevelCommentId, LocalDateTime.now(), Limit.of(3));
+        var result = sut.findAllByParentIdAndPublishedAtLessThanEqualOrderByPublishedAtDesc(
+            topLevelCommentId, LocalDateTime.now(), Limit.of(3));
 
         then(result)
-                .hasSize(3)
-                .extracting("publishedAt", LocalDateTime.class)
-                .isSortedAccordingTo(Comparator.reverseOrder());
+            .hasSize(3)
+            .extracting("publishedAt", LocalDateTime.class)
+            .isSortedAccordingTo(Comparator.reverseOrder());
         then(result)
-                .extracting("parentId")
-                .containsOnly(topLevelCommentId);
+            .extracting("parentId")
+            .containsOnly(topLevelCommentId);
 
         // result.forEach(e -> System.out.println(e));
     }

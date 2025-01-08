@@ -1,5 +1,7 @@
 package com.example.mytv.adapter.out.redis.channel;
 
+import static com.example.mytv.common.CacheNames.CHANNEL;
+
 import com.example.mytv.domain.channel.Channel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,12 +9,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
-import static com.example.mytv.common.CacheNames.CHANNEL;
-
 @RedisHash(value = CHANNEL)
 @AllArgsConstructor
 @Getter
 public class ChannelRedisHash {
+
     @Id
     private String id;
     private ChannelSnippetRedisHash snippet;

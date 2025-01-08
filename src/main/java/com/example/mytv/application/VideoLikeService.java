@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VideoLikeService implements VideoLikeUseCase {
+
     private final VideoLikePort videoLikePort;
 
     public VideoLikeService(VideoLikePort videoLikePort) {

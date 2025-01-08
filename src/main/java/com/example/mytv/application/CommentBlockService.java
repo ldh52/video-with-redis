@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CommentBlockService implements CommentBlockUseCase {
+
     private final CommentBlockPort commentBlockPort;
 
     public CommentBlockService(CommentBlockPort commentBlockPort) {

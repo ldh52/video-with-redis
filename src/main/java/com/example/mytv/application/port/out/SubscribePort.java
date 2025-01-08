@@ -5,6 +5,7 @@ import com.example.mytv.domain.user.User;
 import java.util.List;
 
 public interface SubscribePort {
+
     String insertSubscribeChannel(Channel channel, User user);
 
     void deleteSubscribeChannel(String subscribeId);

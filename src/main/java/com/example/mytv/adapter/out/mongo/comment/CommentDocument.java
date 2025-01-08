@@ -2,17 +2,17 @@ package com.example.mytv.adapter.out.mongo.comment;
 
 import com.example.mytv.domain.comment.Comment;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-
 @Document("comment")
 @AllArgsConstructor
 @Getter
 public class CommentDocument {
+
     @Id
     private String id;
     private String channelId;

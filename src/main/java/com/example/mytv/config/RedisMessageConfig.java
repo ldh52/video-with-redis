@@ -17,6 +17,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisMessageConfig {
+
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
     @Autowired
@@ -26,7 +27,7 @@ public class RedisMessageConfig {
 
     @Bean
     RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        final RedisTemplate<String,Object> redisTemplate = new RedisTemplate<String, Object>();
+        final RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(NewVideoMessage.class));

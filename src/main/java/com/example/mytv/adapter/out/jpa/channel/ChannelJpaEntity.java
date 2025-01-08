@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class ChannelJpaEntity {
+
     @Id
     private String id;
 

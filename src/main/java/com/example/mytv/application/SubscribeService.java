@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SubscribeService implements SubscribeUseCase {
+
     private final SubscribePort subscribePort;
     private final LoadChannelPort loadChannelPort;
     private final LoadUserPort loadUserPort;
 
-    public SubscribeService(SubscribePort subscribePort, LoadChannelPort loadChannelPort, LoadUserPort loadUserPort) {
+    public SubscribeService(SubscribePort subscribePort, LoadChannelPort loadChannelPort,
+        LoadUserPort loadUserPort) {
         this.subscribePort = subscribePort;
         this.loadChannelPort = loadChannelPort;
         this.loadUserPort = loadUserPort;

@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class SubscribeJpaEntity {
+
     @Id
     private String id;
 

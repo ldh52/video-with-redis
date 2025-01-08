@@ -4,5 +4,6 @@ import com.example.mytv.domain.channel.Channel;
 import java.util.Optional;
 
 public interface LoadChannelPort {
+
     Optional<Channel> loadChannel(String id);
 }

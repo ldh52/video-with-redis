@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/subscribe")
 public class ChannelSubscribeApiController {
     private final SubscribeUseCase subscribeUseCase;
-    private final UserUserCase userUserCase;
 
     public ChannelSubscribeApiController(SubscribeUseCase subscribeUseCase, UserUserCase userUserCase) {
         this.subscribeUseCase = subscribeUseCase;
-        this.userUserCase = userUserCase;
     }
 
     @PostMapping

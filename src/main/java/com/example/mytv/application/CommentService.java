@@ -12,25 +12,25 @@ import com.example.mytv.domain.user.User;
 import com.example.mytv.exception.BadRequestException;
 import com.example.mytv.exception.DomainNotFoundException;
 import com.example.mytv.exception.ForbiddenRequestException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CommentService implements CommentUseCase {
+
     private final CommentPort commentPort;
     private final LoadUserPort loadUserPort;
     private final CommentLikePort commentLikePort;
     private final CommentBlockPort commentBlockPort;
 
-    public CommentService(CommentPort commentPort, @Qualifier("userCachePersistenceAdapter") LoadUserPort loadUserPort, CommentLikePort commentLikePort, CommentBlockPort commentBlockPort) {
+    public CommentService(CommentPort commentPort,
+        @Qualifier("userCachePersistenceAdapter") LoadUserPort loadUserPort,
+        CommentLikePort commentLikePort, CommentBlockPort commentBlockPort) {
         this.commentPort = commentPort;
         this.loadUserPort = loadUserPort;
         this.commentLikePort = commentLikePort;
@@ -82,8 +82,7 @@ public class CommentService implements CommentUseCase {
     }
 
     /**
-     * user -> redis user:{userId} 로 조회
-     * commentLike -> redis comment:like:{commentId} 로 부터 조회
+     * user -> redis user:{userId} 로 조회 commentLike -> redis comment:like:{commentId} 로 부터 조회
      */
     @Override
     public CommentResponse getComment(String commentId) {
@@ -102,7 +101,8 @@ public class CommentService implements CommentUseCase {
     }
 
     @Override
-    public List<CommentResponse> listComments(String videoId, String order, String offset, Integer maxSize) {
+    public List<CommentResponse> listComments(String videoId, String order, String offset,
+        Integer maxSize) {
         var list = commentPort.listComment(videoId, order, offset, maxSize).stream()
             .map(comment -> {
                 var user = loadUserPort.loadUser(comment.getAuthorId())
@@ -124,7 +124,8 @@ public class CommentService implements CommentUseCase {
     }
 
     @Override
-    public List<CommentResponse> listComments(User user, String videoId, String order, String offset, Integer maxSize) {
+    public List<CommentResponse> listComments(User user, String videoId, String order,
+        String offset, Integer maxSize) {
         var commentBlocks = commentBlockPort.getUserCommentBlocks(user.getId());
 
         return commentPort.listComment(videoId, order, offset, maxSize).stream()
@@ -156,7 +157,7 @@ public class CommentService implements CommentUseCase {
 
     private CommentResponse buildComment(Comment comment) {
         var user = loadUserPort.loadUser(comment.getAuthorId())
-                .orElse(User.defaultUser(comment.getAuthorId()));
+            .orElse(User.defaultUser(comment.getAuthorId()));
         var commentLikeCount = commentLikePort.getCommentLikeCount(comment.getId());
         return CommentResponse.from(comment, user, commentLikeCount);
     }

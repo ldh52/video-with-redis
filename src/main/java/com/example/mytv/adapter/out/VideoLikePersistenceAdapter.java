@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VideoLikePersistenceAdapter implements VideoLikePort {
+
     private final StringRedisTemplate stringRedisTemplate;
 
     public VideoLikePersistenceAdapter(StringRedisTemplate stringRedisTemplate) {
@@ -27,7 +28,8 @@ public class VideoLikePersistenceAdapter implements VideoLikePort {
 
     @Override
     public Boolean isVideoLikeMember(String videoId, String userId) {
-        return stringRedisTemplate.opsForSet().isMember(RedisKeyGenerator.getVideoLikeKey(videoId), userId);
+        return stringRedisTemplate.opsForSet()
+            .isMember(RedisKeyGenerator.getVideoLikeKey(videoId), userId);
     }
 
     @Override

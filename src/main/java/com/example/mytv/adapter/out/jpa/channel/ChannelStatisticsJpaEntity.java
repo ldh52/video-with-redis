@@ -11,12 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class ChannelStatisticsJpaEntity {
+
     private long videoCount;
     private long subscriberCount;
     private long commentCount;
 
     public static ChannelStatisticsJpaEntity from(ChannelStatistics statistics) {
-        return new ChannelStatisticsJpaEntity(statistics.getVideoCount(), statistics.getSubscriberCount(), statistics.getCommentCount());
+        return new ChannelStatisticsJpaEntity(statistics.getVideoCount(),
+            statistics.getSubscriberCount(), statistics.getCommentCount());
     }
 
     public ChannelStatistics toDomain() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommentLikePersistenceAdapter implements CommentLikePort {
+
     private final RedisTemplate<String, Long> redisTemplate;
 
     public CommentLikePersistenceAdapter(RedisTemplate<String, Long> redisTemplate) {

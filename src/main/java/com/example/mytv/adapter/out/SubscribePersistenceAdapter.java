@@ -20,10 +20,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SubscribePersistenceAdapter implements SubscribePort {
+
     private final SubscribeJpaRepository subscribeJpaRepository;
     private final StringRedisTemplate stringRedisTemplate;
 
-    public SubscribePersistenceAdapter(SubscribeJpaRepository subscribeJpaRepository, StringRedisTemplate stringRedisTemplate) {
+    public SubscribePersistenceAdapter(SubscribeJpaRepository subscribeJpaRepository,
+        StringRedisTemplate stringRedisTemplate) {
         this.subscribeJpaRepository = subscribeJpaRepository;
         this.stringRedisTemplate = stringRedisTemplate;
     }

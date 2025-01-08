@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserSessionService implements UserSessionUseCase {
+
     private final UserSessionPort sessionPort;
 
     public UserSessionService(UserSessionPort sessionPort) {

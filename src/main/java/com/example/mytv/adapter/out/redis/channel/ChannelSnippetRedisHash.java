@@ -10,13 +10,15 @@ import org.springframework.data.redis.core.RedisHash;
 @AllArgsConstructor
 @Getter
 public class ChannelSnippetRedisHash {
+
     private String title;
     private String description;
     private String thumbnailUrl;
     private LocalDateTime publishedAt;
 
     public static ChannelSnippetRedisHash from(ChannelSnippet snippet) {
-        return new ChannelSnippetRedisHash(snippet.getTitle(), snippet.getDescription(), snippet.getThumbnailUrl(), snippet.getPublishedAt());
+        return new ChannelSnippetRedisHash(snippet.getTitle(), snippet.getDescription(),
+            snippet.getThumbnailUrl(), snippet.getPublishedAt());
     }
 
     public ChannelSnippet toDomain() {

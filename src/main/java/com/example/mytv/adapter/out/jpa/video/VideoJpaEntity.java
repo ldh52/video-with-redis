@@ -1,9 +1,9 @@
 package com.example.mytv.adapter.out.jpa.video;
 
 import com.example.mytv.domain.video.Video;
-import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class VideoJpaEntity {
+
     @Id
     private String id;
     private String title;

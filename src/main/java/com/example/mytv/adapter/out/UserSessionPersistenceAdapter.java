@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserSessionPersistenceAdapter implements UserSessionPort {
+
     private final StringRedisTemplate stringRedisTemplate;
 
     public UserSessionPersistenceAdapter(StringRedisTemplate stringRedisTemplate) {

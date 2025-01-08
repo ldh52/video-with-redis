@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessagePersistenceAdapter implements MessagePort {
+
     private final RedisTemplate<String, Object> redisTemplate;
 
     public MessagePersistenceAdapter(@Lazy RedisTemplate<String, Object> redisTemplate) {

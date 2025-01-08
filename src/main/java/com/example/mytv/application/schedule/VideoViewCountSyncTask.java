@@ -3,19 +3,18 @@ package com.example.mytv.application.schedule;
 import com.example.mytv.application.port.out.CacheManagePort;
 import com.example.mytv.application.port.out.LoadVideoPort;
 import com.example.mytv.application.port.out.SaveVideoPort;
+import java.time.LocalDateTime;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
 public class VideoViewCountSyncTask {
-    private final CacheManagePort cacheManagePort;
+
     private final LoadVideoPort loadVideoPort;
     private final SaveVideoPort saveVideoPort;
 
-    public VideoViewCountSyncTask(CacheManagePort cacheManagePort, LoadVideoPort loadVideoPort, SaveVideoPort saveVideoPort) {
-        this.cacheManagePort = cacheManagePort;
+    public VideoViewCountSyncTask(CacheManagePort cacheManagePort, LoadVideoPort loadVideoPort,
+        SaveVideoPort saveVideoPort) {
         this.loadVideoPort = loadVideoPort;
         this.saveVideoPort = saveVideoPort;
     }

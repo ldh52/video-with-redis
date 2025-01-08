@@ -2,7 +2,12 @@ package com.example.mytv.application;
 
 import com.example.mytv.adapter.in.api.dto.VideoRequest;
 import com.example.mytv.application.port.in.VideoUseCase;
-import com.example.mytv.application.port.out.*;
+import com.example.mytv.application.port.out.LoadChannelPort;
+import com.example.mytv.application.port.out.LoadVideoPort;
+import com.example.mytv.application.port.out.MessagePort;
+import com.example.mytv.application.port.out.SaveChannelPort;
+import com.example.mytv.application.port.out.SaveVideoPort;
+import com.example.mytv.application.port.out.VideoLikePort;
 import com.example.mytv.domain.video.Video;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VideoService implements VideoUseCase {
+
     private final LoadVideoPort loadVideoPort;
     private final SaveVideoPort saveVideoPort;
     private final VideoLikePort videoLikePort;
@@ -18,7 +24,9 @@ public class VideoService implements VideoUseCase {
     private final SaveChannelPort saveChannelPort;
     private final MessagePort messagePort;
 
-    public VideoService(LoadVideoPort loadVideoPort, SaveVideoPort saveVideoPort, VideoLikePort videoLikePort, LoadChannelPort loadChannelPort, SaveChannelPort saveChannelPort, MessagePort messagePort) {
+    public VideoService(LoadVideoPort loadVideoPort, SaveVideoPort saveVideoPort,
+        VideoLikePort videoLikePort, LoadChannelPort loadChannelPort,
+        SaveChannelPort saveChannelPort, MessagePort messagePort) {
         this.loadVideoPort = loadVideoPort;
         this.saveVideoPort = saveVideoPort;
         this.videoLikePort = videoLikePort;
@@ -52,13 +60,13 @@ public class VideoService implements VideoUseCase {
     @Override
     public Video createVideo(VideoRequest videoRequest) {
         var video = Video.builder()
-                .id(UUID.randomUUID().toString())
-                .title(videoRequest.getTitle())
-                .description(videoRequest.getDescription())
-                .thumbnailUrl(videoRequest.getThumbnailUrl())
-                .channelId(videoRequest.getChannelId())
-                .publishedAt(LocalDateTime.now())
-                .build();
+            .id(UUID.randomUUID().toString())
+            .title(videoRequest.getTitle())
+            .description(videoRequest.getDescription())
+            .thumbnailUrl(videoRequest.getThumbnailUrl())
+            .channelId(videoRequest.getChannelId())
+            .publishedAt(LocalDateTime.now())
+            .build();
         saveVideoPort.saveVideo(video);
 
         var channel = loadChannelPort.loadChannel(videoRequest.getChannelId()).get();

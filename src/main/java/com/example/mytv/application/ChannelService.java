@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ChannelService implements ChannelUseCase {
+
     private final LoadChannelPort loadChannelPort;
     private final SaveChannelPort saveChannelPort;
 

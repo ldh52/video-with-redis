@@ -5,6 +5,7 @@ import com.example.mytv.domain.video.Video;
 import java.util.List;
 
 public interface VideoUseCase {
+
     Video getVideo(String videoId);
 
     List<Video> listVideos(String channelId);

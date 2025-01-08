@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMVcConfig implements WebMvcConfigurer {
+
     private final UserHandlerMethodArgumentResolver userHandlerMethodArgumentResolver;
 
     public WebMVcConfig(UserHandlerMethodArgumentResolver userHandlerMethodArgumentResolver) {
