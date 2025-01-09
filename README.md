@@ -41,10 +41,10 @@ mytv
 ---
 
 ## 관련 라이브러리
-### Embedded Redis[^1]
+### Embedded Redis
 https://github.com/codemonstur/embedded-redis
 
-### Embedded Mongo for Spring 3.x[^2]
+### Embedded Mongo for Spring 3.x
 https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo.spring
 
 ---
